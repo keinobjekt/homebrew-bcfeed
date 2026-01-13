@@ -4,7 +4,7 @@ class Bcfeed < Formula
   desc "Bandcamp release dashboard from Gmail"
   homepage "https://github.com/keinobjekt/homebrew-bcfeed"
   url "https://github.com/keinobjekt/homebrew-bcfeed/archive/refs/tags/v0.4.tar.gz"
-  sha256 "bcc08cbc751792b77c3ba4b418388d11e17462bad2322401db93f1864e1dc995"
+  sha256 "712e0653a639d6f95514fcb42aafd01686dcd9e5177577a447aa98eb0e2c720c"
   license "MIT"
 
   depends_on "python@3.11"
