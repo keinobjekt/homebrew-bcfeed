@@ -2,8 +2,8 @@ class Bcfeed < Formula
   include Language::Python::Virtualenv
 
   desc "Bandcamp release dashboard from Gmail"
-  homepage "https://github.com/keinobjekt/homebrew-bcfeed"
-  url "https://github.com/keinobjekt/homebrew-bcfeed/archive/refs/tags/v0.4.tar.gz"
+  homepage "https://github.com/keinobjekt/bcfeed"
+  url "https://github.com/keinobjekt/bcfeed/archive/refs/tags/v0.4.tar.gz"
   sha256 "712e0653a639d6f95514fcb42aafd01686dcd9e5177577a447aa98eb0e2c720c"
   license "MIT"
 
