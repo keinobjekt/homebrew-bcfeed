@@ -105,8 +105,26 @@ class Bcfeed < Formula
   end
 
   resource "markupsafe" do
-    url "https://files.pythonhosted.org/packages/e8/4b/3541d44f3937ba468b75da9eebcae497dcf67adb65caa16760b0a6807ebb/markupsafe-3.0.3-cp310-cp310-macosx_10_9_x86_64.whl"
-    sha256 "2f981d352f04553a7171b8e44369f2af4055f888dfb147d55e42d29e29e74559"
+    on_macos do
+      on_arm do
+        url "https://files.pythonhosted.org/packages/08/4b/4acf48c30f75452699ceb384e648bb3db3cb49ddfe21af2fdb4e21723821/markupsafe-3.0.3-cp311-cp311-macosx_11_0_arm64.whl"
+        sha256 "a1d45e704f6f6c36a1b6d8e19650d1e9b4d62f2d7cd4b9b11422884f207c1ea3"
+      end
+      on_intel do
+        url "https://files.pythonhosted.org/packages/08/db/fefacb2136439fc8dd20e797950e749aa1f4997ed584c62cfb8ef7c2be0e/markupsafe-3.0.3-cp311-cp311-macosx_10_9_x86_64.whl"
+        sha256 "1cc7ea17a6824959616c525620e387f6dd30fec8cb44f649e31712db02123dad"
+      end
+    end
+    on_linux do
+      on_arm do
+        url "https://files.pythonhosted.org/packages/1d/09/adf2df3699d87d1d8184038df46a9c80d78c0148492323f4693df54e17bb/markupsafe-3.0.3-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl"
+        sha256 "6b5420a1d9450023228968e7e6a9ce57f65d148ab56d2313fcd589eee96a7a50"
+      end
+      on_intel do
+        url "https://files.pythonhosted.org/packages/30/ac/0273f6fcb5f42e314c6d8cd99effae6a5354604d461b8d392b5ec9530a54/markupsafe-3.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+        sha256 "0bf2a864d67e76e5c9a34dc26ec616a66b9888e25e7b9460e1c76d3293bd9dbf"
+      end
+    end
   end
 
   resource "oauthlib" do
