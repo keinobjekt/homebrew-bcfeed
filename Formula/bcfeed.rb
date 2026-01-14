@@ -107,8 +107,8 @@ class Bcfeed < Formula
   resource "markupsafe" do
     on_macos do
       on_arm do
-        url "https://files.pythonhosted.org/packages/08/4b/4acf48c30f75452699ceb384e648bb3db3cb49ddfe21af2fdb4e21723821/markupsafe-3.0.3-cp311-cp311-macosx_11_0_arm64.whl"
-        sha256 "a1d45e704f6f6c36a1b6d8e19650d1e9b4d62f2d7cd4b9b11422884f207c1ea3"
+        url "https://files.pythonhosted.org/packages/e1/2e/5898933336b61975ce9dc04decbc0a7f2fee78c30353c5efba7f2d6ff27a/markupsafe-3.0.3-cp311-cp311-macosx_11_0_arm64.whl"
+        sha256 "4bd4cd07944443f5a265608cc6aab442e4f74dff8088b0dfc8238647b8f6ae9a"
       end
       on_intel do
         url "https://files.pythonhosted.org/packages/08/db/fefacb2136439fc8dd20e797950e749aa1f4997ed584c62cfb8ef7c2be0e/markupsafe-3.0.3-cp311-cp311-macosx_10_9_x86_64.whl"
