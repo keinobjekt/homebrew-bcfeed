@@ -191,8 +191,12 @@ class Bcfeed < Formula
 
   def install
     venv = virtualenv_create(libexec, "python3.11")
-    system libexec/"bin/python", "-m", "ensurepip"
-    venv.pip_install resources
+    system libexec/"bin/python", "-m", "ensurepip", "--upgrade"
+    resources.each do |resource|
+      resource.stage do
+        system libexec/"bin/python", "-m", "pip", "install", "--no-deps", "--no-binary=:all:", "."
+      end
+    end
 
     app_dir = libexec/"app"
     app_dir.install Dir["*.py", "dashboard.html", "dashboard.css", "dashboard.js", "SETUP.md", "privacy.md"]
