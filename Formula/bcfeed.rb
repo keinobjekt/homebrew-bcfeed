@@ -191,6 +191,7 @@ class Bcfeed < Formula
 
   def install
     venv = virtualenv_create(libexec, "python3.11")
+    system libexec/"bin/python", "-m", "ensurepip"
     venv.pip_install resources
 
     app_dir = libexec/"app"
