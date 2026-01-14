@@ -15,8 +15,8 @@ class Bcfeed < Formula
   end
 
   resource "hatchling" do
-    url "https://files.pythonhosted.org/packages/0b/8e/e480359492affde4119a131da729dd26da742c2c9b604dff74836e47eef9/hatchling-1.28.0.tar.gz"
-    sha256 "4d50b02aece6892b8cd0b3ce6c82cb218594d3ec5836dbde75bf41a21ab004c8"
+    url "https://files.pythonhosted.org/packages/0d/a5/48cb7efb8b4718b1a4c0c331e3364a3a33f614ff0d6afd2b93ee883d3c47/hatchling-1.28.0-py3-none-any.whl"
+    sha256 "dc48722b68b3f4bbfa3ff618ca07cdea6750e7d03481289ffa8be1521d18a961"
   end
 
   resource "packaging" do
@@ -236,14 +236,18 @@ class Bcfeed < Formula
       wheel = Dir["*.whl"].first
       system libexec/"bin/python", "-m", "pip", "install", "--no-deps", wheel
     end
-    build_deps = %w[setuptools wheel hatchling packaging pathspec pluggy trove-classifiers]
+    resource("hatchling").stage do
+      wheel = Dir["*.whl"].first
+      system libexec/"bin/python", "-m", "pip", "install", "--no-deps", wheel
+    end
+    build_deps = %w[setuptools wheel packaging pathspec pluggy trove-classifiers]
     build_deps.each do |name|
       resource(name).stage do
         system libexec/"bin/python", "-m", "pip", "install", "--no-deps", "--no-binary=:all:", "--no-build-isolation", "."
       end
     end
     resources.each do |resource|
-      next if build_deps.include?(resource.name) || resource.name == "flit-core"
+      next if build_deps.include?(resource.name) || resource.name == "flit-core" || resource.name == "hatchling"
       resource.stage do
         system libexec/"bin/python", "-m", "pip", "install", "--no-deps", "--no-binary=:all:", "--no-build-isolation", "."
       end
