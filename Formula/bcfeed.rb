@@ -232,7 +232,10 @@ class Bcfeed < Formula
   def install
     venv = virtualenv_create(libexec, "python3.11")
     system libexec/"bin/python", "-m", "ensurepip", "--upgrade"
-    system libexec/"bin/python", "-m", "pip", "install", "--no-deps", resource("flit-core").cached_download
+    resource("flit-core").stage do
+      wheel = Dir["*.whl"].first
+      system libexec/"bin/python", "-m", "pip", "install", "--no-deps", wheel
+    end
     build_deps = %w[setuptools wheel hatchling packaging pathspec pluggy trove-classifiers]
     build_deps.each do |name|
       resource(name).stage do
