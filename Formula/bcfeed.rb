@@ -3,7 +3,7 @@ class Bcfeed < Formula
 
   desc "Bandcamp release dashboard from Gmail"
   homepage "https://github.com/keinobjekt/bcfeed"
-  url "https://github.com/keinobjekt/bcfeed/archive/refs/tags/0.5.tar.gz"
+  url "https://github.com/keinobjekt/bcfeed/archive/refs/tags/v0.5.tar.gz"
   sha256 "179e1b96ac96e5a4e6083bee20880d2a881539356a6d3874504d74f05c35aaf8"
   license "MIT"
 
