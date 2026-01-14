@@ -14,11 +14,6 @@ class Bcfeed < Formula
     sha256 "f36b47402ecde768dbfafc46e8e4207b4360c654f1f3bb84475f0a28628fb19c"
   end
 
-  resource "wheel" do
-    url "https://files.pythonhosted.org/packages/8a/98/2d9906746cdc6a6ef809ae6338005b3f21bb568bea3165cfc6a243fdc25c/wheel-0.45.1.tar.gz"
-    sha256 "661e1abd9198507b1409a20c02106d9670b2576e916d58f520316666abca6729"
-  end
-
   resource "hatchling" do
     url "https://files.pythonhosted.org/packages/0b/8e/e480359492affde4119a131da729dd26da742c2c9b604dff74836e47eef9/hatchling-1.28.0.tar.gz"
     sha256 "4d50b02aece6892b8cd0b3ce6c82cb218594d3ec5836dbde75bf41a21ab004c8"
@@ -44,9 +39,14 @@ class Bcfeed < Formula
     sha256 "832a7e89ccc43b64b89f8f9d9150c069ebcd17d2dc68279bc00bb53f2a9ae112"
   end
 
+  resource "wheel" do
+    url "https://files.pythonhosted.org/packages/8a/98/2d9906746cdc6a6ef809ae6338005b3f21bb568bea3165cfc6a243fdc25c/wheel-0.45.1.tar.gz"
+    sha256 "661e1abd9198507b1409a20c02106d9670b2576e916d58f520316666abca6729"
+  end
+
   resource "flit-core" do
-    url "https://files.pythonhosted.org/packages/69/59/b6fc2188dfc7ea4f936cd12b49d707f66a1cb7a1d2c16172963534db741b/flit_core-3.12.0.tar.gz"
-    sha256 "18f63100d6f94385c6ed57a72073443e1a71a4acb4339491615d0f16d6ff01b2"
+    url "https://files.pythonhosted.org/packages/f2/65/b6ba90634c984a4fcc02c7e3afe523fef500c4980fec67cc27536ee50acf/flit_core-3.12.0-py3-none-any.whl"
+    sha256 "e7a0304069ea895172e3c7bb703292e992c5d1555dd1233ab7b5621b5b69e62c"
   end
 
   resource "beautifulsoup4" do
@@ -232,14 +232,15 @@ class Bcfeed < Formula
   def install
     venv = virtualenv_create(libexec, "python3.11")
     system libexec/"bin/python", "-m", "ensurepip", "--upgrade"
-    build_deps = %w[setuptools wheel hatchling packaging pathspec pluggy trove-classifiers flit-core]
+    system libexec/"bin/python", "-m", "pip", "install", "--no-deps", resource("flit-core").cached_download
+    build_deps = %w[setuptools wheel hatchling packaging pathspec pluggy trove-classifiers]
     build_deps.each do |name|
       resource(name).stage do
         system libexec/"bin/python", "-m", "pip", "install", "--no-deps", "--no-binary=:all:", "--no-build-isolation", "."
       end
     end
     resources.each do |resource|
-      next if build_deps.include?(resource.name)
+      next if build_deps.include?(resource.name) || resource.name == "flit-core"
       resource.stage do
         system libexec/"bin/python", "-m", "pip", "install", "--no-deps", "--no-binary=:all:", "--no-build-isolation", "."
       end
